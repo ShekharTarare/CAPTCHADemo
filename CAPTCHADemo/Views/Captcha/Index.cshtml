@@ -1,0 +1,39 @@
+﻿@model CAPTCHADemo.Models.Comments
+<!--Make sure to add the below line else you will get errors.-->
+@using CaptchaMvc.HtmlHelpers
+@{
+    ViewBag.Title = "Index";
+}
+
+@using (Html.BeginForm("Index", "Captcha", new { enctype = "multipart/form-data", id = "Captcha" }))
+{
+    @Html.ValidationSummary(true)
+
+    <fieldset>
+        <legend>Add your Comment</legend>
+        <div class="form-group">
+            <label>Name</label>
+            <div>
+                @Html.TextBoxFor(c => c.Name, new { @id = "Name", @class = "form-control", @placeholder = "Name", required = "required" })
+            </div>
+        </div>
+        <div class="form-group">
+            <label>Email</label>
+            @Html.TextBoxFor(c => c.Email, new { @id = "Email", @class = "form-control", @placeholder = "Email", required = "required" })
+        </div>
+        <div class="form-group">
+            <label>Comments</label>
+            @Html.TextBoxFor(c => c.Comment, new { @id = "Comment", @class = "form-control", @placeholder = "Comment", required = "required" })
+        </div>
+
+        <!--For generating mathematical CAPTCHA-->
+        @Html.MathCaptcha()
+
+        <br />
+        <p class="text-danger"> <strong>@ViewBag.Error</strong>  </p>
+        <p>
+            <input type="submit" value="Submit Comment" />
+        </p>
+    </fieldset>
+}
+

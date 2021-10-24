@@ -16,7 +16,8 @@ namespace CAPTCHADemo
             routes.MapRoute(
                 name: "Default",
                 url: "{controller}/{action}/{id}",
-                defaults: new { controller = "Home", action = "Index", id = UrlParameter.Optional }
+                //Changed from Home to Captcha
+                defaults: new { controller = "Captcha", action = "Index", id = UrlParameter.Optional } 
             );
         }
     }
